@@ -4,10 +4,6 @@ const baseURL = 'http://api.openweathermap.org/data/2.5/forecast?zip='
 const apiKey = "&appid=dd9ac0131ddd4de4a4a9018ccbd2b6f3&units=imperial";
 const apiUrl = "http://localhost:8080/";
 
-const dateElement = document.getElementById('date');
-const temperatureElement = document.getElementById('temp');
-const contentElement = document.getElementById('content');
-
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
@@ -83,14 +79,14 @@ const  postDateToServer = async (url = '', data = {}) => {
 
 /** Update UI - Async GET */
 const updateUI = async () => {
-    // Do it from lesson
+    // Do it from lesson "Updating UI Elements"
     const response = await fetch(`${apiUrl}getAllData`);
     try {
         // Transform into JSON
         const All = await response.json();
-            dateElement.innerHTML = `Date : ${All.date}`;
-            temperatureElement.innerHTML = `Temperature(°C) : ${All.temp}`;
-            contentElement.innerHTML = `Feelings : ${All.contant}`;
+        document.querySelector('#date').innerHTML = `Date : ${All.date}`;
+        document.querySelector('#temp').innerHTML = `Temperature(°C) : ${All.temp}`;
+        document.querySelector('#content').innerHTML = `Feelings : ${All.contant}`;
     } catch (error) {
         // appropriately handle the error
         console.log("error",error);
